@@ -41,3 +41,9 @@ jobs:
         run: |
           docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG -f Dockerfile .
           docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
+
+      - name: kubectl apply
+        # .github/workflows 폴더는 가상 폴러기 때문에 위치를 root로 가정
+        run: |
+          kubectl apply -f k8s/order_redis.yml
+          kubectl apply -f k8s/order_deployment.yml
