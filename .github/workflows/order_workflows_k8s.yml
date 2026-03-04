@@ -11,7 +11,10 @@ jobs:
 
     # runner
     runs-on: ubuntu-latest
-
+    # https://docs.github.com/ko/actions
     steps:
       - name: checkout github
         uses: actions/checkout@v2
+
+      - name: install kubectl
+        uses: azure/setup-kubectl@v3
