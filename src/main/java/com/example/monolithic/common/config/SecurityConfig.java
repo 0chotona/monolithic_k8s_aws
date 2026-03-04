@@ -53,7 +53,9 @@ public class SecurityConfig {
         http.csrf(csrf -> csrf.disable()) // Cross-Site Request Forgery(사이트 위변조)
                 .cors(Customizer.withDefaults()) // 얘 생략해도됨 생략하고 filter에 넣으면됨
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/users/signIn").permitAll()
+                        .requestMatchers("/users/signIn",
+                                "/health/alive")
+                        .permitAll()
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                         // .requestMatchers("").authenticated()
                         .requestMatchers("/admin/**").hasRole("ADMIN") // 인증이 필요한 엔드포인트?
